@@ -4,7 +4,7 @@ import './Navbar.css'
 
 function Navbar() {
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light px-2 sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-light bg-secondary-subtle px-2 sticky-top">
             <a className="navbar-brand">
                 <img src={roicoLabel} alt="Logo" height="40" />
             </a>

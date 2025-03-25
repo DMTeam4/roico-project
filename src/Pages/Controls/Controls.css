@@ -1,10 +1,58 @@
 .card-custom {
     width: 100%;
-    
+    background-color: #F3F3F3;
 }
 
-.py-custom{
+.stop-button{
     padding: 17% 10% 16% 10%;
-    
 }
 
+.card-bottom{
+    display: flex;
+    justify-content: center;
+}
+
+.buttons-placement{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2px;
+}
+
+.checkbox{
+    margin-right: 5px;
+    margin-bottom: 25px;
+    width: 15px;  
+    height: 15px;  
+}
+
+.paint-btn{
+    background-color: #9C9C9C;
+    color:white;
+    border-radius: 8%;
+    width: 35%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-arrow{
+    background-color: #12A9C4 !important;
+    border-radius: 8% !important;
+}
+
+.btn-arrow:active{
+    background-color: #7E7E7E !important;
+    transform: scale(0.98);
+}
+
+.paint-btn:active {
+    background-color: #7E7E7E;
+    transform: scale(0.98);
+}
+
+.stop-button:active{
+    transform: scale(0.98);
+}
+
+.horizontal-nav-buttons{
+    margin-right: 15%
+}

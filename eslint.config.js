@@ -10,13 +10,16 @@ export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,jsx}"], plugins: { js }, extends: ["js/recommended"] },
   pluginReact.configs.flat.recommended, {
     rules: {
-      "react/react-in-jsx-scope": "off"}
+      "react/react-in-jsx-scope": "off"},
   },
   {
     "settings": {
       "react": {
         "version": "detect"
       }
+    },
+    "rules": {
+      "react/prop-types": 0
     }
   }
 
