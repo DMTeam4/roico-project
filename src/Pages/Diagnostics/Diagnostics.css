@@ -1,0 +1,19 @@
+.diagnostics-title{
+    display: flex;
+    justify-content: center;
+}
+
+.card-header{
+    border-radius: 10px !important;
+    width: 100%;
+}
+
+.card{
+    border-radius: 10px !important;
+    width: 100%;
+}
+
+.rotate{
+    transform: rotate(-90deg);
+    transition: transform 0.2s ease;
+}

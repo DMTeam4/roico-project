@@ -5,14 +5,14 @@ import LeftArrow from '../../assets/LeftArrow.png'
 import RightArrow from '../../assets/RightArrow.png'
 import RotateLeft from '../../assets/RotateLeft.png'
 import RotateRight from '../../assets/RotateRight.png'
-import Button from './Button'
+import Button from '../../Components/Button'
 
 
 function Controls() {
     return (
         <div className="container mt-4">
             <div className="justify-content-center d-flex flex-column flex-md-row gap-3">
-                <div className="col-lg-6 col-md-8 col-sm-12">
+                <div className="col-lg-6 col-12">
                     <div className="card shadow-lg card-custom bg-secondary-subtle">
                         <div className='card-body'>
                             <div className='card-top'>
@@ -50,8 +50,8 @@ function Controls() {
                     </div>
                 </div>
             
-                <div className="stop-button border bg-danger text-white text-center rounded">
-                    <h4>STOP</h4>
+                <div className="stop-container col-lg-6 d-flex">
+                    <button className="stop-button">STOP</button>
                 </div>
             </div>
         </div>

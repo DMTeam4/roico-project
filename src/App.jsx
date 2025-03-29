@@ -1,8 +1,8 @@
 import Navbar from "./Components/Navbar/Navbar.jsx"
-import Settings from "./Pages/Settings.jsx"
+import Settings from "./Pages/Settings/Settings.jsx"
 import Controls from "./Pages/Controls/Controls.jsx"
-import AdminPanel from "./Pages/AdminPanel.jsx"
-import Diagnostics from "./Pages/Diagnostics.jsx"
+import AdminPanel from "./Pages/AdminPanel/AdminPanel.jsx"
+import Diagnostics from "./Pages/Diagnostics/Diagnostics.jsx"
 import {Route, Routes} from 'react-router-dom'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
