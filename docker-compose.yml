@@ -1,0 +1,45 @@
+services:
+ ros_bridge:
+    build:
+      context: ./ros-bridge-setup
+      args:
+        ROS_DISTRO: humble
+    container_name: ros_bridge
+    environment:
+      ROS_DISTRO: humble
+    command: >
+      bash -c "source /opt/ros/humble/setup.bash && ros2 launch rosbridge_server rosbridge_websocket_launch.xml"
+    restart: unless-stopped
+    networks:
+      - app_net
+
+ backend:
+  build:
+   context: ./backend
+  environment:
+    NODE_ENV: development
+    ROSBRIDGE_SERVER_URL: ws://ros_bridge:9090
+  networks:
+    - app_net
+  depends_on:
+    - ros_bridge
+  container_name: node_backend_app
+  ports:
+    - 7070:7070
+  volumes: 
+    - /app/node_modules
+
+ frontend:
+    build:
+      context: .
+    container_name: react_dev_app
+    ports:
+      - "5173:5173"
+    volumes:
+      - /app/node_modules
+    networks:
+      - app_net
+
+networks:
+  app_net:
+    driver: bridge

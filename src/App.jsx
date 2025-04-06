@@ -3,7 +3,7 @@ import Settings from "./Pages/Settings/Settings.jsx"
 import Controls from "./Pages/Controls/Controls.jsx"
 import AdminPanel from "./Pages/AdminPanel/AdminPanel.jsx"
 import Diagnostics from "./Pages/Diagnostics/Diagnostics.jsx"
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes, Navigate} from 'react-router-dom'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -14,10 +14,11 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/controls" element={<Controls />}></Route>
-        <Route path="/diagnostics" element={<Diagnostics />}></Route>
-        <Route path="/adminPanel" element={<AdminPanel />}></Route>
-        <Route path="/settings" element={<Settings />}></Route>
+        <Route path="/" element={<Navigate to="/controls" />} />
+        <Route path="/controls" element={<Controls />} />
+        <Route path="/diagnostics" element={<Diagnostics />} />
+        <Route path="/adminPanel" element={<AdminPanel />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </>
   )

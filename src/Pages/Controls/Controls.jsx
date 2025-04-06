@@ -23,22 +23,22 @@ function Controls() {
                             </div>
                             <div className='card-middle'>
                                 <div className='buttons-placement'>
-                                    <Button src={RotateLeft}></Button>
-                                    <Button src={UpArrow}></Button>
-                                    <Button src={RotateRight}></Button>
+                                    <Button onClick="rotateLeft" src={RotateLeft}></Button>
+                                    <Button onClick="forward" src={UpArrow}></Button>
+                                    <Button onClick="rotateRight" src={RotateRight}></Button>
                                 </div>
                                 
                                 <div className='buttons-placement'>
                                     <div className='horizontal-nav-buttons'>
-                                    <Button src={LeftArrow}></Button>
+                                    <Button onClick="moveLeft" src={LeftArrow}></Button>
                                     </div>
                                     <div>
-                                    <Button src={RightArrow}></Button>
+                                    <Button onClick="moveRight" src={RightArrow}></Button>
                                     </div>
                                 </div>
 
                                 <div className='buttons-placement'>
-                                <Button src={DownArrow}></Button>
+                                <Button onClick="backward" src={DownArrow}></Button>
                                 </div>
                             </div>
 
