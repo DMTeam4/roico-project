@@ -1,8 +1,47 @@
-import roicoLabel from '../../assets/Roico.png'
-import { NavLink } from 'react-router-dom';
-import './Navbar.css'
+import { useState, useEffect } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode'; 
+import roicoLabel from '../../assets/Roico.png'; 
+import './Navbar.css';
 
 function Navbar() {
+    const [user, setUser] = useState(null);
+    const navigate = useNavigate();
+
+    // Effect to check token and set user state on component load
+    useEffect(() => {
+        const token = localStorage.getItem('token'); 
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+            
+                setUser({
+                        id: decodedToken.id,
+                        username: decodedToken.username,
+                        role: decodedToken.role
+                });
+                // }
+            } catch (error) {
+                console.error("Error decoding token:", error);
+                localStorage.removeItem('token'); // Clean up invalid token
+                setUser(null); // Ensure user state is cleared on error
+            }
+        } else {
+            setUser(null); // Ensure user state is null if no token found
+        }
+    }, []); 
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setUser(null);
+        navigate('/login');
+    };
+
+    if (!user) {
+        // Render nothing or a minimal loading indicator while user state loads
+        return null;
+    }
+    
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-secondary-subtle px-2 sticky-top">
             <a className="navbar-brand">
@@ -19,13 +58,21 @@ function Navbar() {
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/diagnostics">Diagnostics</NavLink>
                     </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/adminPanel">Admin Panel</NavLink>
-                    </li>
+                    {user.role === 'admin' && (
+                                <li className="nav-item">
+                                    <NavLink className="nav-link" to="/adminPanel">Admin Panel</NavLink>
+                                </li>)}
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/settings">Settings</NavLink>
                     </li>
-                </ul>
+                </ul>   
+
+                <div className="ms-auto">
+                    <button className="btn btn-danger btn-sm" onClick={handleLogout}>
+                        Logout ({user.username})
+                    </button>
+                </div>
+
                 <form className="d-flex">
                     
                 </form>

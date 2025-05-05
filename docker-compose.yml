@@ -1,5 +1,7 @@
+version: '3.8' # Specify a version
+
 services:
- ros_bridge:
+  ros_bridge:
     build:
       context: ./ros-bridge-setup
       args:
@@ -12,33 +14,51 @@ services:
     restart: unless-stopped
     networks:
       - app_net
+    # No ports exposed to host needed
 
- backend:
-  build:
-   context: ./backend
-  environment:
-    NODE_ENV: development
-    ROSBRIDGE_SERVER_URL: ws://ros_bridge:9090
-  networks:
-    - app_net
-  depends_on:
-    - ros_bridge
-  container_name: node_backend_app
-  ports:
-    - 7070:7070
-  volumes: 
-    - /app/node_modules
-
- frontend:
+  backend:
     build:
-      context: .
-    container_name: react_dev_app
-    ports:
-      - "5173:5173"
-    volumes:
-      - /app/node_modules
+      context: ./backend
+    environment:
+      NODE_ENV: development
+      ROSBRIDGE_SERVER_URL: ws://ros_bridge:9090
     networks:
       - app_net
+    depends_on:
+      - ros_bridge
+    container_name: node_backend_app
+    # ports: # <-- REMOVE or COMMENT OUT this port mapping
+    #   - 7070:7070 
+    volumes: 
+      # Consider if this volume is truly needed or if node_modules should be IN the image
+      - /app/node_modules # Be cautious with mapping node_modules locally
+
+  frontend:
+    build:
+      context: . # Assuming Dockerfile is in the root with docker-compose.yml
+    container_name: react_dev_app
+    # ports: # <-- REMOVE or COMMENT OUT this port mapping
+    #   - "5173:5173"
+    volumes:
+      # Consider if this volume is truly needed or if node_modules should be IN the image
+      - /app/node_modules # Be cautious with mapping node_modules locally
+    networks:
+      - app_net
+
+  # --- ADD NGINX SERVICE ---
+  nginx-proxy:
+    image: nginx:1.25.3-alpine # Use a specific version, alpine is smaller
+    container_name: nginx-proxy
+    ports:
+      - "80:80" # Map HOST port 80 to Nginx container port 80
+    volumes:
+      # Mount your nginx config file into the container (read-only)
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro 
+    networks:
+      - app_net
+    depends_on: # Tell Docker Compose to start nginx after these (doesn't guarantee readiness)
+      - backend
+      - frontend
 
 networks:
   app_net:

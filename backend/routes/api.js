@@ -1,11 +1,13 @@
-const express = require("express");
+import express from "express";
+import passport from "passport";
+import * as ros2Controller from "../controllers/ros2Controller.js";
+import * as authController from "../controllers/authController.js";
+
 const router = express.Router();
-const ros2Controller = require("../controllers/ros2Controller.js");
-//const dbController = require("../controllers/dbController");
 
-//router.get("/ros2", ros2Controller.getRos2Data);
-//router.get("/db", dbController.getDatabaseData);
+router.post("/move", passport.authenticate('jwt', {session: false, failWithError: true}), ros2Controller.moveRobot);
+router.post("/register", authController.registerUser);
 
-router.post("/move", ros2Controller.moveRobot);
+router.post("/login", passport.authenticate('local', {session: false, failWithError: true}),  authController.Login);
 
-module.exports = router;
+export default router;

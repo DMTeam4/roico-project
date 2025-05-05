@@ -9,7 +9,7 @@ function Diagnostics(){
             <div className="diagnostics-title">
                 <h1>Diagnostics</h1>
             </div>
-            <div className="card shadow-lg card-custom bg-secondary-subtle">
+            <div className="card shadow-lg  bg-secondary-subtle">
                 <div className="card-body flex-md-row gap-md-5">
                     <div className="diagnstic-container">
                         <p>System Messages</p>

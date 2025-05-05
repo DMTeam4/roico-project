@@ -2,6 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server"
@@ -11,8 +12,14 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.41.0",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "mysql2": "^3.14.0",
+    "passport": "^0.7.0",
+    "passport-jwt": "^4.0.1",
+    "passport-local": "^1.0.0",
     "roslib": "^1.4.1"
   }
 }

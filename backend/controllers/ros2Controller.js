@@ -1,4 +1,4 @@
-const RosLib = require('roslib');
+import RosLib from 'roslib';
 
 let ros;
 let cmdVel = null;
@@ -45,7 +45,7 @@ function setupRosConnection() {
 }
 
 
-exports.moveRobot = (req, res) => { 
+export const moveRobot = (req, res) => { 
 
     const { Direction } = req.body;
 

@@ -1,4 +1,5 @@
 import axios from "axios";
+import authHandler from "../utils/authHelper";
 
 function Button(props){
 
@@ -15,7 +16,8 @@ function Button(props){
 
 const move = async (Direction) => {
     try {
-        const response = await axios.post("http://localhost:7070/api/move", {Direction});
+        const config = authHandler(); // Get the config with the token
+        const response = await axios.post("api/move", {Direction}, config);
         console.log(response.data);
     } catch (error) {
         console.error("Error sending move command:", error);
